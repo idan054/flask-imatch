@@ -23,7 +23,7 @@ def configure_routes(app):
     @app.route('/api')
     def api():
         with open(
-            os.path.join(os.getcwd(), 'data', 'data.json'), mode='r'
+            os.path.join(os.getcwd(), 'static/data', 'data.json'), mode='r'
         ) as my_file:
             text = my_file.read()
             return text
