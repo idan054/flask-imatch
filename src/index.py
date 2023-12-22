@@ -15,10 +15,11 @@ def index():
 @app.route('/api')
 def api():
     with open(
-        os.path.join(os.getcwd(), '../data', 'data.json'), mode='r'
+        os.path.join(os.getcwd(), 'data', 'data.json'), mode='r'
     ) as my_file:
         text = my_file.read()
         return text
+
 
 
 @app.route('/success', methods=['POST', 'GET'])
