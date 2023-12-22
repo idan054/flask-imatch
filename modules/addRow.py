@@ -7,7 +7,7 @@ def addRow(row_values):
     print("row_values")
     print(row_values)
     
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('../static/data/data.json')
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('static/data/data.json')
     client = gspread.authorize(credentials)    
     spreadsheet_list = client.list_spreadsheet_files()
     print("spreadsheet_list")
