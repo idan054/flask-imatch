@@ -1,33 +1,23 @@
-"""
-Aplicação Flask
-
-Michel Metran
-Data: 30.11/2023
-"""
-
-
+from flask import Flask, render_template, request
+from src.addRow import addRow
+from src.woo_requests.product_details_by_name import product_details_by_name
 import os
-from flask import Flask
+
 
 app = Flask(__name__)
 
-print(os.listdir(os.getcwd()))
 
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 
 @app.route('/')
-def home():
-    print(os.listdir(os.getcwd()))
-    return 'Home Page Route'
-
-
-@app.route('/about')
-def about():
-    return 'About Page Route'
-
-
-@app.route('/contact')
-def contact():
-    return 'Contact Page Route'
+def api():
+    with open(
+        os.path.join(os.getcwd(), '../data', 'data.json'), mode='r'
+    ) as my_file:
+        text = my_file.read()
+        return text
 
 
 @app.route('/api')
@@ -39,7 +29,21 @@ def api():
         return text
 
 
-if __name__ == '__main__':
-    # port = int(os.environ.get('PORT', 5000))
-    print(os.getcwd())
-    # app.run(host='0.0.0.0', port=port)
+@app.route('/success', methods=['POST', 'GET'])
+def success():
+    if request.method == 'POST':
+        main_field = request.form['main_field']
+        print(main_field)
+        data = product_details_by_name(main_field)
+        addRow(data)
+
+    with open(
+        os.path.join(os.getcwd(), 'data', 'data.json'), mode='r'
+    ) as my_file:
+        text = my_file.read()
+
+    # return render_template('success.html')
+    return text
+
+# Debug only
+app.run(host='0.0.0.0', port=93, debug=True)
