@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('tamplates/index.html')
 
 
 @app.route('/api')
@@ -30,7 +30,7 @@ def success():
         data = product_details_by_name(main_field)
         addRow(data)
 
-    return render_template('success.html')
+    return render_template('tamplates/success.html')
 
 # Debug only
 app.run(host='0.0.0.0', port=94, debug=True)
