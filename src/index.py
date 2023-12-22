@@ -12,7 +12,7 @@ app = Flask(__name__)
 #     return render_template('index.html')
 
 @app.route('/')
-def api():
+def home():
     with open(
         os.path.join(os.getcwd(), '../data', 'data.json'), mode='r'
     ) as my_file:
@@ -46,4 +46,4 @@ def success():
     return text
 
 # Debug only
-app.run(host='0.0.0.0', port=93, debug=True)
+app.run(host='0.0.0.0', port=94, debug=True)
