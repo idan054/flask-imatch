@@ -2,10 +2,10 @@
     "version": 2,
     "builds": [
         {"src": "src/index.py", "use": "@vercel/python"},
-        {"src": "src/templates/index.html", "use": "@vercel/static"},
-        {"src": "src/templates/success.html", "use": "@vercel/static"},
         {"src": "src/addRow.py", "use": "@vercel/python"},
         {"src": "src/woo_requests/product_details_by_name.py", "use": "@vercel/python"},
+
+        {"src": "templates/*.html", "use": "@vercel/static"},
         {"src": "data/*.json", "use": "@vercel/static"}
     ],
     "routes": [
