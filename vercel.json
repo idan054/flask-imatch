@@ -1,16 +1,4 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api/index.py" }
-  ],
-  "functions": {
-    "api/index.py": {
-      "includeFiles": "credentials.json"
-    },
-    "api/addRow.py": {
-      "includeFiles": "credentials.json"
-    }
-  },
-
       "builds": [
         {"src": "api/index.py", "use": "@vercel/python"},
         {"src": "api/data/*.json", "use": "@vercel/static"}
