@@ -1,28 +1,64 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+# flask-app-vercel
 
-# Flask + Vercel
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+Flask application templates hosted on Vercel, included with unit testing and Python modules.
 
-## Demo
-
-https://flask-python-template.vercel.app/
-
-## How it Works
-
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
-
-## Running Locally
-
-```bash
-npm i -g vercel
-vercel dev
+## Structure 📂
 ```
+flask-app-vercel
+├── .github
+├── handlers
+├── modules
+├── static
+│   ├── images
+│   ├── scripts
+│   └── styles
+├── templates
+├── tests
+├── .gitignore
+├── LICENSE
+├── README.md
+├── app.py
+├── requirements.txt
+└── vercel.json
+```
+- [.github](.github/) is a folder that used to place Github related stuff, like CI pipeline.
+- [handlers](handlers/) contain handler to handling HTTP request methods.
+- [modules](modules/) contain the main modules of the app.
+- [static](static/) contain static files like images, CSS, and JavaScript files.
+- [templates](templates/) contain the file that will be rendered for display in the browser.
+- [tests](tests/) contain unit test of the app.
+- [.gitignore](.gitignore) is a file to exclude some folders like venv.
+- [LICENSE](LICENSE) is a file that contains the license used in this app.
+- [README.md](README.md) is the file you are reading now.
+- [app.py](app.py) is the main file of this app.
+- [requirements.txt](requirements.txt) is a file that contains a list of dependencies used in this app.
+- [vercel.json](vercel.json) is a file that contains configuration and override the default behavior of Vercel.
 
-Your Flask application is now available at `http://localhost:3000`.
-
-## One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+## Installation 🛠️
+- Clone the repository:
+```
+git clone https://github.com/putuwaw/flask-app-vercel.git
+```
+- Create a virtual environment:
+```
+python -m venv venv
+```
+- Activate virtual environment:
+```
+source venv/Scripts/activate
+```
+- Install dependencies:
+```
+pip install -r requirements.txt
+```
+- Run app:
+```
+python app.py
+```
+- Run test:
+```
+pytest
+```

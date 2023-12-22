@@ -1,14 +1,18 @@
 {
-    "version": 2,
     "builds": [
-        {"src": "src/index.py", "use": "@vercel/python"},
-        {"src": "src/addRow.py", "use": "@vercel/python"},
-        {"src": "src/woo_requests/product_details_by_name.py", "use": "@vercel/python"},
-
-        {"src": "templates/*.html", "use": "@vercel/static"},
-        {"src": "data/*.json", "use": "@vercel/static"}
+        {
+            "src": "app.py",
+            "use": "@vercel/python"
+        },
+        {
+            "src": "static/**",
+            "use": "@vercel/static"
+        }
     ],
     "routes": [
-        {"src": "/(.*)", "dest": "src/index.py"}
+        {
+            "src": "/(.*)",
+            "dest": "app.py"
+        }
     ]
 }
