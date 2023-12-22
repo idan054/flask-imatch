@@ -54,7 +54,7 @@ def product_details_by_name(main_field):
                 sku = '-'
 
             try:
-                image = products[0]['images'][0]['src']
+                image = products[0]['images'][0]['public']
             except (KeyError, IndexError):
                 image = '-'
 

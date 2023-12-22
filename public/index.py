@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
-from src.addRow import addRow
-from src.woo_requests.product_details_by_name import product_details_by_name
+from public.addRow import addRow
+from public.woo_requests.product_details_by_name import product_details_by_name
 import os
 
 

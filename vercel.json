@@ -1,8 +1,10 @@
 {
     "version": 2,
     "builds": [
-        {"src": "src/index.py", "use": "@vercel/python"},
+        {"src": "public/index.py", "use": "@vercel/python"},
+        {"src": "public/addRow.py", "use": "@vercel/python"},
+        {"src": "public/woo_requests/product_details_by_name.py", "use": "@vercel/python"},
         {"src": "data/*.json", "use": "@vercel/static"}
     ],
-    "routes": [{"src": "/(.*)", "dest": "src/index.py"}]
+    "routes": [{"src": "/(.*)", "dest": "public/index.py"}]
 }
