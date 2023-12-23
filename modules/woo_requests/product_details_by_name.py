@@ -19,10 +19,16 @@ def product_details_by_name(main_field):
         'per_page': 1 
     }
 
-    response = requests.get(
-    'https://corsproxy.io/?https://spider3d.co.il/wp-json/wc/v3/products?search=כחול&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
-     # endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret), params=params
-)
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDMzMzEyNzcsImV4cCI6NzcwMzMzMTIxNywiZW1haWwiOiJvc3BpZGVyM2RAZ21haWwuY29tIiwiaWQiOiI0NzY0Iiwic2l0ZSI6Imh0dHBzOlwvXC93d3cuc3BpZGVyM2QuY28uaWwiLCJ1c2VybmFtZSI6ImV5YWwxMGJpdEBnbWFpbC5jb20ifQ.xVQAxHdyMINU_oK3wBniOmJb8qVb0c0xxAr2ncyNlog"
+    }
+
+
+    # 'https://corsproxy.io/?https://spider3d.co.il/wp-json/wc/v3/products?search=כחול&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
+        # auth=HTTPBasicAuth(consumer_key, consumer_secret),
+    response = requests.get(endpoint, headers=headers, params=params)
     
     if response.status_code == 200:
     
