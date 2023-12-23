@@ -33,7 +33,7 @@ def configure_routes(app):
     @app.route('/woo_api')
     def woo_api():
         data = product_details_by_name("כחול")
-        return text
+        return data
 #
 
 
