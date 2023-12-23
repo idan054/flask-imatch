@@ -18,8 +18,8 @@ def product_details_by_name(main_field):
         'search': product_name,
         'per_page': 1 
     }
-    
-    response = 
+
+    response = requests.get(
     'https://corsproxy.io/?https://spider3d.co.il/wp-json/wc/v3/products?search=כחול&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
      # endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret), params=params
 )
