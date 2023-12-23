@@ -28,7 +28,12 @@ def configure_routes(app):
             text = my_file.read()
             return text
 
+   
 
+    @app.route('/woo_api')
+    def woo_api():
+        data = product_details_by_name("כחול")
+        return text
 #
 
 
