@@ -4,6 +4,7 @@ import json
 from bs4 import BeautifulSoup
 
 
+
 def product_details_by_name(main_field):
     
     base_url = 'https://spider3d.co.il'
