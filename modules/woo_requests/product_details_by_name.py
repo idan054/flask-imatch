@@ -26,9 +26,10 @@ def product_details_by_name(main_field):
         version="wc/v3"
     )
 
+
     # Query example.
     productss = wcapi.get("products", params={"per_page": 20})
-    return productss
+    return str(productss)
 
 
     # headers = {
