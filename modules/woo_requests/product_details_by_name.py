@@ -2,42 +2,54 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 from bs4 import BeautifulSoup
-
+from woocommerce import API
 
 
 def product_details_by_name(main_field):
-    
     base_url = 'https://spider3d.co.il'
     consumer_key = 'ck_10860d370ddb79f39b4da3a765960cfd05842cfa'
     consumer_secret = 'cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
     # product_name = 'ּּ+PLAּ סילק מטאלי אדום Silk Red'
     product_name = main_field
-    
+
     endpoint = f'{base_url}/wp-json/wc/v3/products'
     params = {
         'search': product_name,
-        'per_page': 1 
+        'per_page': 1
     }
 
 
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDMzMzEyNzcsImV4cCI6NzcwMzMzMTIxNywiZW1haWwiOiJvc3BpZGVyM2RAZ21haWwuY29tIiwiaWQiOiI0NzY0Iiwic2l0ZSI6Imh0dHBzOlwvXC93d3cuc3BpZGVyM2QuY28uaWwiLCJ1c2VybmFtZSI6ImV5YWwxMGJpdEBnbWFpbC5jb20ifQ.xVQAxHdyMINU_oK3wBniOmJb8qVb0c0xxAr2ncyNlog"
-    }
+    wcapi = API(
+        url=base_url,
+        consumer_key=consumer_key,
+        consumer_secret=consumer_secret,
+        version="wc/v3"
+    )
 
+    # Query example.
+    productss = wcapi.get("products", params={"per_page": 20}).json()
+    return productss
+
+
+    # headers = {
+    #     "Content-Type": "application/json",
+    #     "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDMzMzEyNzcsImV4cCI6NzcwMzMzMTIxNywiZW1haWwiOiJvc3BpZGVyM2RAZ21haWwuY29tIiwiaWQiOiI0NzY0Iiwic2l0ZSI6Imh0dHBzOlwvXC93d3cuc3BpZGVyM2QuY28uaWwiLCJ1c2VybmFtZSI6ImV5YWwxMGJpdEBnbWFpbC5jb20ifQ.xVQAxHdyMINU_oK3wBniOmJb8qVb0c0xxAr2ncyNlog"
+    # }
 
     # 'https://corsproxy.io/?https://spider3d.co.il/wp-json/wc/v3/products?search=כחול&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
-        # auth=HTTPBasicAuth(consumer_key, consumer_secret),
-    response = requests.get(endpoint, headers=headers, params=params)
-    
+    response = requests.get(endpoint,
+                            # headers=headers,
+                            params=params,
+                            auth=HTTPBasicAuth(consumer_key, consumer_secret),
+                            )
+
     if response.status_code == 200:
-    
+
         products = response.json()
         if products:
             # print(products[0])
-            
-            
-                # Exanple: https://spider3d.co.il/wp-json/wc/v3/products?search=%D6%BC%D6%BC+PLA%D6%BC%20%D7%A1%D7%99%D7%9C%D7%A7%20%D7%9E%D7%98%D7%90%D7%9C%D7%99%20%D7%90%D7%93%D7%95%D7%9D%20Silk%20Red&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97
+
+            # Exanple: https://spider3d.co.il/wp-json/wc/v3/products?search=%D6%BC%D6%BC+PLA%D6%BC%20%D7%A1%D7%99%D7%9C%D7%A7%20%D7%9E%D7%98%D7%90%D7%9C%D7%99%20%D7%90%D7%93%D7%95%D7%9D%20Silk%20Red&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97
 
             try:
                 permalink = products[0]['permalink']
@@ -76,8 +88,7 @@ def product_details_by_name(main_field):
                 description_html = '-'
                 clean_desc = '-'
 
-            
-            return [permalink, id, name, clean_desc, price, image,sku ]
+            return [permalink, id, name, clean_desc, price, image, sku]
         else:
             print("Product not found.")
             return []
