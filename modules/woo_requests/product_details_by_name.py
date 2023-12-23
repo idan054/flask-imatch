@@ -19,13 +19,17 @@ def product_details_by_name(main_field):
         'per_page': 1 
     }
     
-    response = requests.get(endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret), params=params)
+    response = 
+    'https://corsproxy.io/?https://spider3d.co.il/wp-json/wc/v3/products?search=כחול&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
+     # endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret), params=params
+)
     
     if response.status_code == 200:
     
         products = response.json()
         if products:
             # print(products[0])
+            
             
                 # Exanple: https://spider3d.co.il/wp-json/wc/v3/products?search=%D6%BC%D6%BC+PLA%D6%BC%20%D7%A1%D7%99%D7%9C%D7%A7%20%D7%9E%D7%98%D7%90%D7%9C%D7%99%20%D7%90%D7%93%D7%95%D7%9D%20Silk%20Red&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97
 
