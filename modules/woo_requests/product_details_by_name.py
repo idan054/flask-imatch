@@ -27,7 +27,7 @@ def product_details_by_name(main_field):
     )
 
     # Query example.
-    productss = wcapi.get("products", params={"per_page": 20}).json()
+    productss = wcapi.get("products", params={"per_page": 20})
     return productss
 
 
