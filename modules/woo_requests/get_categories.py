@@ -32,13 +32,13 @@ def get_woo_categories():
     response = requests.get(endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret))
 
     # if response.status_code == 200:
-    categories = response.json()
+    # categories = response.json()
 
         # file_path = os.path.join(os.getcwd(), 'categories.json')
         # Write the categories to a file
         # with open(file_path, mode='w') as file:
         #     json.dump(categories, file, ensure_ascii=False, indent=4)
 
-    return response.json()
+    return response.content
 
     # return None
