@@ -32,13 +32,12 @@ def configure_routes(app):
 
         return render_template('success.html')
 
-    @app.route('/api')
-    def api():
-        with open(
-                os.path.join(os.getcwd(), 'static/data', 'data.json'), mode='r'
-        ) as my_file:
-            text = my_file.read()
-            return text
+    @app.route('/woo_api')
+    def woo_api():
+        categories = get_woo_categories()
+        print("categories")
+        print(categories)
+        return categories
 
     @app.route('/get_category', methods=['POST', 'GET'], )
     def get_category():

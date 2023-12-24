@@ -15,16 +15,20 @@ def get_products_from_category(mainFieldNum,categoryId):
     # consumer_secret = 'cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
     # product_name = 'חומר גלם'
 
-    file_path = 'settings.txt'
-    config = {}
-    with open(file_path, 'r') as file:
-        for line in file:
-            key, value = line.strip().split('=')
-            config[key.strip()] = value.strip()
+    base_url = 'https://avners.co.il'
+    consumer_key = 'ck_40277bba2e0d959fb2ec3aed808e01db800f4c1f'
+    consumer_secret = 'cs_ffefd520797cef75c3a9c5cea3dd477c2fa585bf'
 
-    base_url = config.get('base_url', '')
-    consumer_key = config.get('consumer_key', '')
-    consumer_secret = config.get('consumer_secret', '')
+    # file_path = 'settings.txt'
+    # config = {}
+    # with open(file_path, 'r') as file:
+    #     for line in file:
+    #         key, value = line.strip().split('=')
+    #         config[key.strip()] = value.strip()
+    #
+    # base_url = config.get('base_url', '')
+    # consumer_key = config.get('consumer_key', '')
+    # consumer_secret = config.get('consumer_secret', '')
 
     endpoint = f'{base_url}/wp-json/wc/v3/products?_fields=id,name,price,sku,images,description,permalink'
     params = {
