@@ -20,40 +20,46 @@ def configure_routes(app):
         if request.method == 'POST':
             data = request.get_json()
             main_field = data['main_field']
+            web_field = data['web_field']
+            cs_field = data['cs_field']
+            ck_field = data['ck_field']
             selectedRadioValue = data['selectedRadioValue']
             print(main_field)
             print("selectedRadioValue")
             print(selectedRadioValue)
 
             if selectedRadioValue == 0:
-                product_details_by_name(main_field)
+                product_details_by_name(web_field, cs_field, ck_field, main_field)
             else:
-                get_products_from_category(main_field, selectedRadioValue)
+                get_products_from_category(web_field, cs_field, ck_field, main_field, selectedRadioValue)
 
         return render_template('success.html')
 
-    @app.route('/woo_api')
-    def woo_api():
-        categories = get_woo_categories()
-        print("categories")
-        print(categories)
-        return categories
+    # @app.route('/woo_api')
+    # def woo_api():
+    #     categories = get_woo_categories()
+    #     print("categories")
+    #     print(categories)
+    #     return categories
 
     @app.route('/get_category', methods=['POST', 'GET'], )
     def get_category():
         if request.method == 'POST':
             print("START get_woo_categories")
 
-        # Save locally
-        try:
-            with open(os.path.join(os.getcwd(), '', 'categories.json'), mode='r') as my_file:
-                json_categories = my_file.read()
-                return json_categories
+            # Save locally
+            # try:
+            #     with open(os.path.join(os.getcwd(), '', 'categories.json'), mode='r') as my_file:
+            #         json_categories = my_file.read()
+            #         return json_categories
+            #
+            # except:
 
-        except:
-            # data = request.get_json()
-            # main_field = data['main_field']
-            categories = get_woo_categories()
+            data = request.get_json()
+            web_field = data['web_field']
+            cs_field = data['cs_field']
+            ck_field = data['ck_field']
+            categories = get_woo_categories(web_field, cs_field, ck_field)
             print("categories")
             print(categories)
             return categories

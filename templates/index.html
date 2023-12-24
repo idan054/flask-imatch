@@ -60,6 +60,9 @@
 
             document.getElementById('message').textContent = 'טוען...';
             var mainField = document.getElementById('main_field').value;
+            var webField = document.getElementById('web_field').value;
+            var csField = document.getElementById('cs_field').value;
+            var ckField = document.getElementById('ck_field').value;
 
             console.log('selectedRadioValue');
             console.log(selectedRadioValue);
@@ -70,11 +73,16 @@
                 },
                 body: JSON.stringify({
                     "main_field": mainField,
+                    "main_field": mainField,
+                    "web_field": webField,
+                    "cs_field": csField,
+                    "ck_field": ckField,
                     "selectedRadioValue": selectedRadioValue,
                 })
             })
                 // .then(response => response.json())
                 .then(data => {
+                    console.log(data)
                     if (selectedRadioValue == 0) {
                         document.getElementById('message').textContent =
                             'המוצר נוסף בהצלחה!'
@@ -89,12 +97,20 @@
             console.log('START handleFindCategory');
             document.getElementById('message').textContent = 'טוען...';
             var mainField = document.getElementById('main_field').value;
+            var webField = document.getElementById('web_field').value;
+            var csField = document.getElementById('cs_field').value;
+            var ckField = document.getElementById('ck_field').value;
             fetch('/get_category', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({"main_field": mainField})
+                body: JSON.stringify({
+                    "main_field": mainField,
+                    "web_field": webField,
+                    "cs_field": csField,
+                    "ck_field": ckField,
+                })
             })
                 .then(response => response.json()) // Parse the JSON of the response
                 .then(data => {
@@ -147,9 +163,14 @@
         }
 
         function checkInput() {
-            var textField = document.getElementById('main_field');
-            var button = document.getElementById('start');
-            button.disabled = !textField.value.trim();
+            var mainField = document.getElementById('main_field');
+            var webField = document.getElementById('web_field');
+            var ckField = document.getElementById('ck_field');
+            var csField = document.getElementById('cs_field');
+            var start_button = document.getElementById('start_button');
+            var cat_button = document.getElementById('cat_button');
+            start_button.disabled = !mainField.value.trim() || !webField.value.trim() || !ckField.value.trim() || !csField.value.trim();
+            cat_button.disabled = !webField.value.trim() || !ckField.value.trim() || !csField.value.trim();
         }
 
         // Call checkInput on page load in case the text field is pre-filled
@@ -174,20 +195,34 @@
 <!-- <form action="/success" method="post"> -->
 <form onsubmit="handleSubmit(event)">
     <h2 dir="ltr">iMatch כלי אוטומטי
-        <i class="fas fa-question-circle" onclick="showInfo()"
-           style="font-size: medium; cursor: pointer; margin-left: 10px;"></i>
+
+
+        <i class="fas fa-cog" onclick="showInfo()"
+           style="font-size: medium; cursor: pointer; margin-left: 5px;"></i>
     </h2>
     <div id="infoText"
          style="display: none; border: 1px solid gray; padding: 10px; margin-top: 10px; margin-bottom: 10px; border-radius: 5px;">
-        חשוב לוודא שהקובץ settings.json נמצא בתיקייה
-        <a href="https://docs.google.com/spreadsheets/d/1FfmbtfQaFDflDk1BBSWIJMULc0f-5L63LbvPFdhczBc/edit#gid=0"
-   target="_blank">הורדת קובץ לדוגמא</a>
+        להסבר איך להשיג מפתח
+        <a href="https://ibb.co/9gR2zzy"
+           target="_blank">לחץ כאן</a>
+        <br>
+        <br>
+
+        <input dir=rtl id="web_field" type="text" placeholder="כתובת אתר במבנה https://example.co.il" name="main_field" autocomplete="off"
+               oninput="checkInput()" style="width: 400px;">
+        <br>
+
+        <input dir=rtl id="ck_field" type="text" placeholder="מפתח צרכן ck" name="main_field" autocomplete="off"
+               oninput="checkInput()">
+
+        <input dir=rtl id="cs_field" type="text" placeholder="סיסמת צרכן cs" name="main_field" autocomplete="off"
+               oninput="checkInput()">
     </div>
     <input dir=rtl id="main_field" type="text" placeholder="שם מוצר / מס' עמוד" name="main_field" autocomplete="off"
            oninput="checkInput()">
     <br>
-    <button type="button" onclick="handleFindCategory()">זיהוי קטגוריות</button>
-    <button id='start' type="submit">הפעלה</button>
+    <button id='cat_button' type="button" onclick="handleFindCategory()">זיהוי קטגוריות</button>
+    <button id='start_button' type="submit">הפעלה</button>
 </form>
 <br>
 <a href="https://docs.google.com/spreadsheets/d/1FfmbtfQaFDflDk1BBSWIJMULc0f-5L63LbvPFdhczBc/edit#gid=0"
