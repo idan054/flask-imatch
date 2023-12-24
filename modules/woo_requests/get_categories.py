@@ -4,7 +4,6 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 from bs4 import BeautifulSoup
-from werkzeug.debug import console
 from woocommerce import API
 
 
@@ -34,7 +33,6 @@ def get_woo_categories():
 
     if response.status_code == 200:
         categories = response.json()
-        console.log(response.json())
 
         # file_path = os.path.join(os.getcwd(), 'categories.json')
         # Write the categories to a file
