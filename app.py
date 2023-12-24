@@ -2,16 +2,13 @@ from flask import Flask
 from handlers.routes import configure_routes
 import webview
 
-from modules.addRow import addRows
-
 app = Flask(__name__)
-# window = webview.create_window('iMatch Tool', app, height=300, width=500)
+window = webview.create_window('iMatch Tool', app, height=300, width=500)
 
 configure_routes(app)
 
 if __name__ == "__main__":
-    addRows(['X', 'Y', 'Z'])
-    # app.run(debug=True, port=4012, host='0.0.0.0')
+    app.run(debug=True, port=4012, host='0.0.0.0')
     # webview.start(http_server=True, http_port=5000)
 
 # Build .exe file
