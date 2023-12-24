@@ -9,8 +9,8 @@ from woocommerce import API
 
 def get_woo_categories():
     base_url = 'https://spider3d.co.il'
-    consumer_key = 'ck_10860d370ddb79f39b4da3a765960cfd05842cfa'
-    consumer_secret = 'cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
+    consumer_key = 'ck_3cd2f0123e4f2c75762cb7cba116c60a333ccfd4'
+    consumer_secret = 'cs_5d42c2d29dd618c948edd57d3b9b8b48353f38b9'
     # product_name = 'חומר גלם'
 
     # file_path = 'settings.txt'
