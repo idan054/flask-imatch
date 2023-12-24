@@ -1,0 +1,1 @@
+([('app', '/Users/mac/PycharmProjects/flask-imatch/dist/app', 'EXECUTABLE')],)

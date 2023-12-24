@@ -1,0 +1,3 @@
+base_url=https://spider3d.co.il
+consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa
+consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97

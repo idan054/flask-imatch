@@ -4,40 +4,49 @@ import json
 from bs4 import BeautifulSoup
 from woocommerce import API
 
+from modules.addRow import addRows
+
 
 def product_details_by_name(main_field):
-    base_url = 'https://spider3d.co.il'
-    consumer_key = 'ck_10860d370ddb79f39b4da3a765960cfd05842cfa'
-    consumer_secret = 'cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
+    # base_url = 'https://spider3d.co.il'
+    # consumer_key = 'ck_10860d370ddb79f39b4da3a765960cfd05842cfa'
+    # consumer_secret = 'cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
     # product_name = 'ּּ+PLAּ סילק מטאלי אדום Silk Red'
+
+    file_path = 'settings.txt'
+    config = {}
+    with open(file_path, 'r') as file:
+        for line in file:
+            key, value = line.strip().split('=')
+            config[key.strip()] = value.strip()
+
+    base_url = config.get('base_url', '')
+    consumer_key = config.get('consumer_key', '')
+    consumer_secret = config.get('consumer_secret', '')
+
     product_name = main_field
 
-    endpoint = f'{base_url}/wp-json/wc/v3/products'
+    endpoint = f'{base_url}/wp-json/wc/v3/products?_fields=id,name,price,sku,images,description,permalink'
     params = {
         'search': product_name,
         'per_page': 1
     }
 
-
-    wcapi = API(
-        url=base_url,
-        consumer_key=consumer_key,
-        consumer_secret=consumer_secret,
-        version="wc/v3"
-    )
-
-
-    # Query example.
-    productss = wcapi.get("products", params={"per_page": 20})
-    return str(productss)
-
-
+    # wcapi = API(
+    #     url=base_url,
+    #     consumer_key=consumer_key,
+    #     consumer_secret=consumer_secret,
+    #     version="wc/v3"
+    # )
+    # productss = wcapi.get("products", params={"per_page": 20})
+    # return str(productss)
     # headers = {
     #     "Content-Type": "application/json",
     #     "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDMzMzEyNzcsImV4cCI6NzcwMzMzMTIxNywiZW1haWwiOiJvc3BpZGVyM2RAZ21haWwuY29tIiwiaWQiOiI0NzY0Iiwic2l0ZSI6Imh0dHBzOlwvXC93d3cuc3BpZGVyM2QuY28uaWwiLCJ1c2VybmFtZSI6ImV5YWwxMGJpdEBnbWFpbC5jb20ifQ.xVQAxHdyMINU_oK3wBniOmJb8qVb0c0xxAr2ncyNlog"
     # }
 
     # 'https://corsproxy.io/?https://spider3d.co.il/wp-json/wc/v3/products?search=כחול&consumer_key=ck_10860d370ddb79f39b4da3a765960cfd05842cfa&consumer_secret=cs_5265e43f6e72275fc510c86dee08ae81b08c8e97'
+
     response = requests.get(endpoint,
                             # headers=headers,
                             params=params,
@@ -89,7 +98,9 @@ def product_details_by_name(main_field):
                 description_html = '-'
                 clean_desc = '-'
 
-            return [permalink, id, name, clean_desc, price, image, sku]
+            product_values = [permalink, id, name, clean_desc, price, image, sku]
+            addRows(product_values)
+            return product_values
         else:
             print("Product not found.")
             return []
