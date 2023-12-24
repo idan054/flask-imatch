@@ -39,6 +39,6 @@ def get_woo_categories():
         # with open(file_path, mode='w') as file:
         #     json.dump(categories, file, ensure_ascii=False, indent=4)
 
-    return response.content
+    return {"content" : response.content, "status_code" : response.status_code}
 
     # return None
