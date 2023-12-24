@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from woocommerce import API
 
 
-def get_woo_categories(web_field, cs_field, ck_field,):
+def get_woo_categories(web_field, cs_field, ck_field, ):
     base_url = web_field
     consumer_key = ck_field
     consumer_secret = cs_field
@@ -38,4 +38,12 @@ def get_woo_categories(web_field, cs_field, ck_field,):
 
         return response.json()
 
-    return None
+    return [{
+        'id': 0,
+        'name': 'קטגוריות לא זוהו. השרת / אתר שלך חוסם את הבקשה',
+    },
+        {
+            'id': 1,
+            'name': 'נא לפנות אל מנהל האתר / האיש הטכני',
+        }
+    ]
