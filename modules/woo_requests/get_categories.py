@@ -34,11 +34,11 @@ def get_woo_categories():
     # if response.status_code == 200:
     # categories = response.json()
 
-        # file_path = os.path.join(os.getcwd(), 'categories.json')
-        # Write the categories to a file
-        # with open(file_path, mode='w') as file:
-        #     json.dump(categories, file, ensure_ascii=False, indent=4)
+    # file_path = os.path.join(os.getcwd(), 'categories.json')
+    # Write the categories to a file
+    # with open(file_path, mode='w') as file:
+    #     json.dump(categories, file, ensure_ascii=False, indent=4)
 
-    return response.status_code
+    return {"status_code": str(response.status_code), "content": str(response.content)}
 
     # return None
