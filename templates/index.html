@@ -2,6 +2,8 @@
 <html dir="rtl">
 <head>
     <title>iMatch tool</title>
+     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1870/1870111.png">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -176,6 +178,15 @@
         // Call checkInput on page load in case the text field is pre-filled
         window.onload = checkInput;
 
+        function initializeConfig() {
+            var config = JSON.parse('{{ config | tojson | safe }}');
+
+            document.getElementById('web_field').value = config.base_url;
+            document.getElementById('ck_field').value = config.consumer_key;
+            document.getElementById('cs_field').value = config.consumer_secret;
+        }
+        window.onload = initializeConfig;
+
 
         function showInfo() {
             var infoDiv = document.getElementById("infoText");
@@ -208,14 +219,15 @@
         <br>
         <br>
 
-        <input dir=rtl id="web_field" type="text" placeholder="כתובת אתר במבנה https://example.co.il" name="main_field" autocomplete="off"
+        <input dir=ltr id="web_field" type="text" placeholder="כתובת אתר במבנה https://example.co.il" name="main_field"
+               autocomplete="off"
                oninput="checkInput()" style="width: 400px;">
         <br>
 
-        <input dir=rtl id="ck_field" type="text" placeholder="מפתח צרכן ck" name="main_field" autocomplete="off"
+        <input dir=ltr id="ck_field" type="text" placeholder="מפתח צרכן ck" name="main_field" autocomplete="off"
                oninput="checkInput()">
 
-        <input dir=rtl id="cs_field" type="text" placeholder="סיסמת צרכן cs" name="main_field" autocomplete="off"
+        <input dir=ltr id="cs_field" type="text" placeholder="סיסמת צרכן cs" name="main_field" autocomplete="off"
                oninput="checkInput()">
     </div>
     <input dir=rtl id="main_field" type="text" placeholder="שם מוצר / מס' עמוד" name="main_field" autocomplete="off"

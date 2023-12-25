@@ -8,11 +8,10 @@ from modules.addRow import addRows
 from modules.woo_requests.product_details_by_name import extract_text_from_html
 
 
-def get_products_from_category(web_field, cs_field, ck_field,mainFieldNum,categoryId):
+def get_products_from_category(web_field, cs_field, ck_field, mainFieldNum, categoryId):
     base_url = web_field
     consumer_key = ck_field
     consumer_secret = cs_field
-
 
     # base_url = 'https://spider3d.co.il'
     # consumer_key = 'ck_10860d370ddb79f39b4da3a765960cfd05842cfa'
@@ -99,4 +98,3 @@ def get_products_from_category(web_field, cs_field, ck_field,mainFieldNum,catego
 
         return products
     return None
-

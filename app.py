@@ -8,7 +8,7 @@ window = webview.create_window('iMatch Tool', app, height=300, width=500)
 configure_routes(app)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=4012, host='0.0.0.0')
+    app.run(debug=True, port=4013, host='0.0.0.0')
     # webview.start(http_server=True, http_port=5000)
 
 # Build .exe file
