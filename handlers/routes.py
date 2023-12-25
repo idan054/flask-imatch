@@ -44,5 +44,6 @@ def configure_routes(app):
             ck_field = data['ck_field']
 
             save_config_locally(web_field, cs_field, ck_field)
+
             categories = get_woo_categories(web_field, cs_field, ck_field)
             return categories
