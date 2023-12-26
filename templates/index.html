@@ -2,7 +2,7 @@
 <html dir="rtl">
 <head>
     <title>iMatch tool</title>
-     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1870/1870111.png">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1870/1870111.png">
 
     <style>
         body {
@@ -102,6 +102,7 @@
             var webField = document.getElementById('web_field').value;
             var csField = document.getElementById('cs_field').value;
             var ckField = document.getElementById('ck_field').value;
+
             fetch('/get_category', {
                 method: 'POST',
                 headers: {
@@ -173,18 +174,30 @@
             var cat_button = document.getElementById('cat_button');
             start_button.disabled = !mainField.value.trim() || !webField.value.trim() || !ckField.value.trim() || !csField.value.trim();
             cat_button.disabled = !webField.value.trim() || !ckField.value.trim() || !csField.value.trim();
+
+            localStorage.setItem('web_field', webField.value);
+            localStorage.setItem('cs_field', csField.value);
+            localStorage.setItem('ck_field', ckField.value);
+
         }
 
         // Call checkInput on page load in case the text field is pre-filled
         window.onload = checkInput;
 
         function initializeConfig() {
-            var config = JSON.parse('{{ config | tojson | safe }}');
+            var web_field = localStorage.getItem('web_field');
+            var ck_field = localStorage.getItem('ck_field');
+            var cs_field = localStorage.getItem('cs_field');
 
-            document.getElementById('web_field').value = config.base_url;
-            document.getElementById('ck_field').value = config.consumer_key;
-            document.getElementById('cs_field').value = config.consumer_secret;
+            console.log(web_field)
+            console.log(ck_field)
+            console.log(cs_field)
+
+            document.getElementById('web_field').value = web_field;
+            document.getElementById('ck_field').value = ck_field;
+            document.getElementById('cs_field').value = cs_field;
         }
+
         window.onload = initializeConfig;
 
 
@@ -229,6 +242,9 @@
 
         <input dir=ltr id="cs_field" type="text" placeholder="סיסמת צרכן cs" name="main_field" autocomplete="off"
                oninput="checkInput()">
+
+        <br>
+            <a>(גרסא 8)</a>
     </div>
     <input dir=rtl id="main_field" type="text" placeholder="שם מוצר / מס' עמוד" name="main_field" autocomplete="off"
            oninput="checkInput()">

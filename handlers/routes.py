@@ -2,7 +2,6 @@ import os
 import pandas as pd
 from flask import render_template, request, json
 from modules.addRow import addRows
-from modules.local_config import save_config_locally, try_get_local_config
 from modules.woo_requests.get_categories import get_woo_categories
 from modules.woo_requests.product_details_by_name import product_details_by_name
 from modules.woo_requests.products_from_category import get_products_from_category
@@ -12,8 +11,7 @@ def configure_routes(app):
 
     @app.route("/")
     def index():
-        config = try_get_local_config()
-        return render_template("index.html", config=config)
+        return render_template("index.html")
 
     @app.route('/success', methods=['POST', 'GET'])
     def success():
@@ -42,8 +40,6 @@ def configure_routes(app):
             web_field = data['web_field']
             cs_field = data['cs_field']
             ck_field = data['ck_field']
-
-            save_config_locally(web_field, cs_field, ck_field)
 
             categories = get_woo_categories(web_field, cs_field, ck_field)
             return categories
