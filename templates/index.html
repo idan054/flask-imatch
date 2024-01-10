@@ -115,6 +115,8 @@
                     "ck_field": ckField,
                 })
             })
+
+                // routes.py /get_category
                 .then(response => response.json()) // Parse the JSON of the response
                 .then(data => {
                     console.log('data');
@@ -232,15 +234,15 @@
         <br>
         <br>
 
-        <input dir=ltr id="web_field" type="text" placeholder="כתובת אתר במבנה https://example.co.il" name="main_field"
+        <input dir=rtl id="web_field" type="text" placeholder="כתובת אתר במבנה https://example.co.il" name="main_field"
                autocomplete="off"
                oninput="checkInput()" style="width: 400px;">
         <br>
 
-        <input dir=ltr id="ck_field" type="text" placeholder="מפתח צרכן ck" name="main_field" autocomplete="off"
+        <input dir=rtl id="ck_field" type="text" placeholder="מפתח צרכן ck" name="main_field" autocomplete="off"
                oninput="checkInput()">
 
-        <input dir=ltr id="cs_field" type="text" placeholder="סיסמת צרכן cs" name="main_field" autocomplete="off"
+        <input dir=rtl id="cs_field" type="text" placeholder="סיסמת צרכן cs" name="main_field" autocomplete="off"
                oninput="checkInput()">
 
         <br>
